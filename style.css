@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* 1. AŞAMA CÜMLELERİ */
+#text-sequence {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ea80b0;
+    text-shadow: 0 0 12px rgba(234, 128, 176, 0.8);
+    text-align: center;
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    /* Alt satıra kaymayı engeller */
+    white-space: nowrap; 
+}
+
+#text-sequence.show {
+    opacity: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 2. AŞAMA: KALP FORMU VE AKICI HAREKET */
+#ui {
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+#ui .love_horizontal {
+    position: absolute;
+    /* Cümlelerin kalp çizgisi üstünde birbirini takip ederek akmasını sağlar */
+    animation: flowOnHeartPath 10s linear infinite;
+    animation-delay: calc((10s / var(--total)) * var(--i) * -1);
+}
+
+#ui .love_word {
+    color: #ea80b0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px #fff, 0 0 12px #ea80b0;
+    white-space: nowrap;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* Kalp çizgisinin tam koordinatları boyunca yer değiştirme animasyonu */
+@keyframes flowOnHeartPath {
+    0% {
+        /* Kalbin en alt sivri ucu */
+        transform: translate(0px, 150px);
+    }
+    12.5% {
+        transform: translate(-100px, 80px);
+    }
+    25% {
+        /* Sol üst kavis başı */
+        transform: translate(-160px, -20px);
+    }
+    37.5% {
+        /* Sol lop zirvesi */
+        transform: translate(-90px, -100px);
+    }
+    50% {
+        /* Kalbin üst orta çukuru */
+        transform: translate(0px, -40px);
+    }
+    62.5% {
+        /* Sağ lop zirvesi */
+        transform: translate(90px, -100px);
+    }
+    75% {
+        /* Sağ üst kavis başı */
+        transform: translate(160px, -20px);
+    }
+    87.5% {
+        transform: translate(100px, 80px);
+    }
+    100% {
+        /* Başlangıca dönüş */
+        transform: translate(0px, 150px);
+    }
+}
